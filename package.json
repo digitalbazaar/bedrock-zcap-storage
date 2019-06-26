@@ -31,8 +31,6 @@
   },
   "peerDependencies": {
     "bedrock": "^1.12.1",
-    "bedrock-account": "^2.1.0",
-    "bedrock-permission": "^2.5.0",
     "bedrock-mongodb": "3.x - 5.x"
   },
   "directories": {
