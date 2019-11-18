@@ -20,7 +20,7 @@
   "author": {
     "name": "Digital Bazaar, Inc.",
     "email": "support@digitalbazaar.com",
-    "url": "http://digitalbazaar.com"
+    "url": "https://digitalbazaar.com/"
   },
   "bugs": {
     "url": "https://github.com/digitalbazaar/bedrock-zcap-storage/issues"
@@ -30,8 +30,8 @@
     "assert-plus": "^1.0.0"
   },
   "peerDependencies": {
-    "bedrock": "^1.12.1",
-    "bedrock-mongodb": "3.x - 5.x"
+    "bedrock": "1.12.1 - 3.x",
+    "bedrock-mongodb": "3.x - 6.x"
   },
   "directories": {
     "lib": "./lib"
