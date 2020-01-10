@@ -1,5 +1,10 @@
 # bedrock-zcap-storage ChangeLog
 
+## 1.2.0 - 2020-01-xx
+
+### Added
+- Support passing an array of invocation targets to `storage.get`.
+
 ## 1.1.0 - 2019-11-18
 
 ### Changed
