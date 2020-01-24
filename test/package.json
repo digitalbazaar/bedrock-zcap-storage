@@ -1,0 +1,17 @@
+{
+  "name": "bedrock-zcap-storage-test",
+  "version": "0.0.1-0",
+  "description": "Bedrock ZCAP storage test",
+  "private": true,
+  "scripts": {
+    "test": "node --preserve-symlinks test.js test"
+  },
+  "dependencies": {
+    "bedrock": "^3.1.0",
+    "bedrock-jsonld-document-loader": "^1.0.1",
+    "bedrock-mongodb": "^6.0.2",
+    "bedrock-security-context": "^3.0.0",
+    "bedrock-test": "^5.0.0",
+    "bedrock-zcap-storage": "file:.."
+  }
+}
