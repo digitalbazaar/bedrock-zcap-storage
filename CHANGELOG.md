@@ -1,5 +1,13 @@
 # bedrock-zcap-storage ChangeLog
 
+## 2.0.0 - 2020-02-26
+
+### Changed
+- **BREAKING**: Namespace mongo collections based on convention.
+
+### Added
+- Revocations API.
+
 ## 1.2.0 - 2020-01-10
 
 ### Added
