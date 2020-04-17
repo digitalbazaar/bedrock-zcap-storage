@@ -1,10 +1,12 @@
 {
   "name": "bedrock-zcap-storage-test",
   "version": "0.0.1-0",
-  "description": "Bedrock ZCAP storage test",
   "private": true,
   "scripts": {
-    "test": "node --preserve-symlinks test.js test"
+    "test": "node --preserve-symlinks test.js test",
+    "coverage": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text-summary npm test",
+    "coverage-ci": "cross-env NODE_ENV=test nyc --reporter=text-lcov npm test > coverage.lcov",
+    "coverage-report": "nyc report"
   },
   "dependencies": {
     "bedrock": "^3.1.0",
@@ -12,6 +14,17 @@
     "bedrock-mongodb": "^6.0.2",
     "bedrock-security-context": "^3.0.0",
     "bedrock-test": "^5.0.0",
-    "bedrock-zcap-storage": "file:.."
+    "bedrock-zcap-storage": "file:..",
+    "cross-env": "^7.0.2",
+    "nyc": "^15.0.1"
+  },
+  "nyc": {
+    "excludeNodeModules": false,
+    "include": [
+      "node_modules/bedrock-zcap-storage/**"
+    ],
+    "exclude": [
+      "node_modules/bedrock-zcap-storage/node_modules/**"
+    ]
   }
 }
