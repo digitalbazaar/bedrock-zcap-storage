@@ -11,7 +11,7 @@
   "dependencies": {
     "bedrock": "^3.1.0",
     "bedrock-jsonld-document-loader": "^1.0.1",
-    "bedrock-mongodb": "digitalbazaar/bedrock-mongodb#driver3",
+    "bedrock-mongodb": "^7.0.0",
     "bedrock-security-context": "^3.0.0",
     "bedrock-test": "^5.0.0",
     "bedrock-zcap-storage": "file:..",
