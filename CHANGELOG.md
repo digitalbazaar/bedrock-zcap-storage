@@ -1,5 +1,12 @@
 # bedrock-zcap-storage ChangeLog
 
+## 2.1.0 -
+
+### Changed
+  - `bedrock-mongodb` upgraded to version ^7.0.0.
+  - find now supports options.projection.
+  - If both fields and options.projection are defined find throws.
+
 ## 2.0.0 - 2020-02-26
 
 ### Changed
