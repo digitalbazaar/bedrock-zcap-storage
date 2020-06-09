@@ -4,6 +4,7 @@
 
 ### Changed
 - **BREAKING**: Upgrade `bedrock-mongodb` to ^7.0.0.
+- Changed mongodb API methods to mongo driver 3.5.
 
 ### Added
 - find now supports options.projection.
