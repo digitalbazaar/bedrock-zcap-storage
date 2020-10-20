@@ -1,5 +1,10 @@
 # bedrock-zcap-storage ChangeLog
 
+## 3.2.0 - 2020-10-20
+
+### Changed
+- Update peer and test deps.
+
 ## 3.1.0 - 2020-07-07
 
 ### Changed
