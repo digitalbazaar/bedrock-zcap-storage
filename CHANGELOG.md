@@ -1,5 +1,10 @@
 # bedrock-zcap-storage ChangeLog
 
+## 3.3.0 - 2021-07-xx
+
+### Changed
+- Update peer dependencies; use bedrock@4.
+
 ## 3.2.0 - 2020-10-20
 
 ### Changed
