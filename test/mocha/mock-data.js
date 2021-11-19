@@ -11,6 +11,8 @@ module.exports = mocks;
 const actors = mocks.actors = {};
 const delegations = mocks.delegations = {};
 const revocations = mocks.revocations = {};
+const authorizations = mocks.authorizations = {};
+const zcaps = mocks.zcaps = {};
 
 actors.alpha = {
   id: 'urn:uuid:ec6bcc36-e7ab-46e9-aebb-ab57caee4fbe'
@@ -33,7 +35,7 @@ delegations.alpha = {
     // this is a unique ID
     id: `urn:zcap:056df9bc-93e2-4a0e-aa5a-d5217dcca018`,
     // this is typically a did:key: or did:v1:
-    invoker: actors.beta.id,
+    invoker: actors.alpha.id,
     // parentCapability could be root capability (e.g. a key or an LD
     // document).
     parentCapability:
@@ -77,5 +79,71 @@ revocations.gamma = {
   delegator: '3f1995e6-038b-41a2-9c87-70fd0458b74e',
   capability: {
     id: '2044302d-484b-4bfd-83c6-b7a8f988770d',
+  }
+};
+
+authorizations.alpha = {
+  controller: 'urn:e6aa448c-8242-4dbd-a5a9-68d62862db6e',
+  capability: {
+    '@context': bedrock.config.constants.SECURITY_CONTEXT_V2_URL,
+    id: 'urn:zcap:3b175c87-09ee-44a4-9c97-dc2ffb329b22',
+    invoker: actors.alpha.id,
+    parentCapability:
+      'https://example.com/keys/c2ed35fd-d8fe-4180-a5f5-a2eec739036b',
+    allowedAction: 'sign',
+    invocationTarget: 'urn:uuid:e30d372c-7ab2-429c-91b0-03dc3bcc6289',
+    proof: {
+      verificationMethod: 'did:v1:123123#123123'
+    }
+  }
+};
+
+authorizations.beta = {
+  controller: 'urn:4b32fae0-ac64-4d14-82b8-b99c4687140d',
+  capability: {
+    '@context': bedrock.config.constants.SECURITY_CONTEXT_V2_URL,
+    id: 'urn:zcap:8bd184b4-a7bd-4ca3-a450-9f7d1e10eedd',
+    invoker: actors.alpha.id,
+    parentCapability:
+      'https://example.com/keys/8b02af9e-abcb-4337-967a-987ed80329e7',
+    allowedAction: 'sign',
+    invocationTarget: 'urn:uuid:0181875b-2a82-42ab-819f-93f2b729d9e4',
+    proof: {
+      verificationMethod: 'did:v1:234234#234234'
+    }
+  }
+};
+
+zcaps.alpha = {
+  referenceId: 'urn:uuid:eefa5a82-4a1a-40fd-b54c-e43d17d5d2fa',
+  controller: 'urn:120a128e-b057-404b-ad14-0254c5ccb998',
+  capability: {
+    '@context': bedrock.config.constants.SECURITY_CONTEXT_V2_URL,
+    id: 'urn:zcap:c10e705a-9921-4517-98ca-f776bcb6e39b',
+    invoker: actors.alpha.id,
+    parentCapability:
+      'https://example.com/keys/d6de2aef-d4ed-4d89-a794-d43cc185844b',
+    allowedAction: 'sign',
+    invocationTarget: 'urn:uuid:ec56e8c0-3d0d-4d8b-afa4-035237f86d2b',
+    proof: {
+      verificationMethod: 'did:v1:345345#345345'
+    }
+  }
+};
+
+zcaps.beta = {
+  referenceId: 'urn:uuid:a233db4a-e539-471a-bd6f-386a974d8d0d',
+  controller: 'urn:96f99d7c-382e-4c77-b693-df6d05efa21a',
+  capability: {
+    '@context': bedrock.config.constants.SECURITY_CONTEXT_V2_URL,
+    id: 'urn:zcap:09c7e0f3-5ef0-4507-b9e8-87912cc00172',
+    invoker: actors.alpha.id,
+    parentCapability:
+      'https://example.com/keys/f310de00-2dd2-4d2b-9951-8e3a38044931',
+    allowedAction: 'sign',
+    invocationTarget: 'urn:uuid:eaeccea6-dab7-4f2b-b288-f7456ab69117',
+    proof: {
+      verificationMethod: 'did:v1:456456#456456'
+    }
   }
 };
