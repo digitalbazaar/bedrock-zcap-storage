@@ -2,6 +2,10 @@
 
 ## 4.0.0 - 2021-11-xx
 
+### Added
+- **BREAKING**: Automatically remove zcap revocations that have expired from
+  storage.
+
 ### Changed
 - **BREAKING**: Change database format for storing revocations. The record
   format has been simplified to remove unnecessary database hashing. This
