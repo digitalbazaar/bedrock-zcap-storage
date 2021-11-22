@@ -1,5 +1,13 @@
 # bedrock-zcap-storage ChangeLog
 
+## 4.0.0 - 2021-11-xx
+
+### Changed
+- **BREAKING**: Change database format for storing revocations. The record
+  format has been simplified to remove unnecessary database hashing. This
+  version is incompatible with previous versions and there is no auto-migration
+  code.
+
 ## 3.3.0 - 2021-07-23
 
 ### Changed

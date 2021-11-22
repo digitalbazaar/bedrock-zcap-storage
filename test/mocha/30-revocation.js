@@ -24,7 +24,7 @@ describe('revocation API', () => {
       result.capability.should.eql(revocation.capability);
 
       const findResult = await database.collections['zcap-revocation'].find({
-        id: database.hash(revocation.capability.id),
+        'capability.id': revocation.capability.id,
       }).toArray();
       findResult.should.have.length(1);
       findResult[0].capability.should.eql(revocation.capability);
