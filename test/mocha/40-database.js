@@ -158,8 +158,9 @@ describe('ZCaps Database Tests', () => {
         executionStats.totalDocsExamined.should.equal(1);
         executionStats.executionStages.inputStage.inputStage.inputStage.stage
           .should.equal('IXSCAN');
+        // winning query plan is {controller: 1, referenceId: 1} in this case.
         executionStats.executionStages.inputStage.inputStage.inputStage
-          .keyPattern.should.eql({controller: 1, id: 1});
+          .keyPattern.should.eql({controller: 1, referenceId: 1});
       });
     it(`is properly indexed for 'controller' and 'referenceId' in find()`,
       async () => {
@@ -194,8 +195,9 @@ describe('ZCaps Database Tests', () => {
         executionStats.totalKeysExamined.should.equal(1);
         executionStats.totalDocsExamined.should.equal(1);
         executionStats.executionStages.inputStage.stage.should.equal('IXSCAN');
+        // winning query plan is {controller: 1, referenceId: 1} in this case.
         executionStats.executionStages.inputStage.keyPattern.should.eql({
-          controller: 1, id: 1});
+          controller: 1, referenceId: 1});
       });
     it(`is properly indexed for 'controller' and 'invoker' in find()`,
       async () => {
@@ -212,8 +214,9 @@ describe('ZCaps Database Tests', () => {
         executionStats.totalKeysExamined.should.equal(1);
         executionStats.totalDocsExamined.should.equal(1);
         executionStats.executionStages.inputStage.stage.should.equal('IXSCAN');
+        // winning query plan is {controller: 1, referenceId: 1} in this case.
         executionStats.executionStages.inputStage.keyPattern.should.eql({
-          controller: 1, invoker: 1});
+          controller: 1, referenceId: 1});
       });
     it(`is properly indexed for 'controller' and 'referenceId' in remove()`,
       async () => {
@@ -242,8 +245,9 @@ describe('ZCaps Database Tests', () => {
         executionStats.totalKeysExamined.should.equal(1);
         executionStats.totalDocsExamined.should.equal(1);
         executionStats.executionStages.inputStage.stage.should.equal('IXSCAN');
+        // winning query plan is {controller: 1, referenceId: 1} in this case.
         executionStats.executionStages.inputStage.keyPattern.should.eql({
-          controller: 1, id: 1});
+          controller: 1, referenceId: 1});
       });
   });
 });
