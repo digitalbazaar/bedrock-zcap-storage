@@ -1,6 +1,6 @@
 # bedrock-zcap-storage ChangeLog
 
-## 4.0.0 - 2021-11-xx
+## 4.0.0 - 2021-11-23
 
 ### Added
 - **BREAKING**: Automatically remove zcap revocations that have expired from
