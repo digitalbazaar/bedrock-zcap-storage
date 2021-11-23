@@ -130,20 +130,3 @@ zcaps.alpha = {
     }
   }
 };
-
-zcaps.beta = {
-  referenceId: 'urn:uuid:a233db4a-e539-471a-bd6f-386a974d8d0d',
-  controller: 'urn:96f99d7c-382e-4c77-b693-df6d05efa21a',
-  capability: {
-    '@context': bedrock.config.constants.SECURITY_CONTEXT_V2_URL,
-    id: 'urn:zcap:09c7e0f3-5ef0-4507-b9e8-87912cc00172',
-    invoker: actors.alpha.id,
-    parentCapability:
-      'https://example.com/keys/f310de00-2dd2-4d2b-9951-8e3a38044931',
-    allowedAction: 'sign',
-    invocationTarget: 'urn:uuid:eaeccea6-dab7-4f2b-b288-f7456ab69117',
-    proof: {
-      verificationMethod: 'did:v1:456456#456456'
-    }
-  }
-};
