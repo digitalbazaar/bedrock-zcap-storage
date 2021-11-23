@@ -23,7 +23,8 @@ describe('revocation API', () => {
       should.exist(result);
       result.capability.should.eql(revocation.capability);
 
-      const findResult = await database.collections['zcap-revocation'].find({
+      const collection = database.collections['zcap-storage-revocation'];
+      const findResult = await collection.find({
         'capability.id': revocation.capability.id,
       }).toArray();
       findResult.should.have.length(1);
