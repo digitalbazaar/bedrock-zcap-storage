@@ -10,7 +10,7 @@ const helpers = require('./helpers.js');
 describe('Authorizations Database Tests', () => {
   describe('Indexes', async () => {
     beforeEach(async () => {
-      const collectionName = 'zcap-authorization';
+      const collectionName = 'zcap-storage-authorization';
       await helpers.removeCollection(collectionName);
 
       // two authorizations are inserted here in order to do proper assertions
@@ -113,7 +113,7 @@ describe('Authorizations Database Tests', () => {
 describe('ZCaps Database Tests', () => {
   describe('Indexes', async () => {
     beforeEach(async () => {
-      const collectionName = 'zcap-storage';
+      const collectionName = 'zcap-storage-zcap';
       await helpers.removeCollection(collectionName);
 
       // two authorizations are inserted here in order to do proper assertions
