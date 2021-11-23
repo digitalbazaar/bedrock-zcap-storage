@@ -54,6 +54,8 @@ delegations.alpha = {
 };
 
 revocations.alpha = {
+  // this is for a service object ID such as the ID of a keystore/EDV/etc.
+  rootTarget: 'https://example.com/edvs/123',
   delegator: '51689f5c-a8ea-4924-8108-e7461a54989f',
   capability: {
     id: '5cef0111-04f3-4d6b-9a67-48d7013fea9a',
@@ -61,6 +63,8 @@ revocations.alpha = {
 };
 
 revocations.beta = {
+  // this is for a service object ID such as the ID of a keystore/EDV/etc.
+  rootTarget: 'https://example.com/keystores/abc',
   delegator: '93ae803d-e753-4789-83a1-2b3e807abd7b',
   capability: {
     id: '8677f033-d4fd-44c6-afb2-a49688d68c21',
@@ -68,6 +72,8 @@ revocations.beta = {
 };
 
 revocations.gamma = {
+  // this is for a service object ID such as the ID of a keystore/EDV/etc.
+  rootTarget: 'https://example.com/verifiers/xyz',
   delegator: '3f1995e6-038b-41a2-9c87-70fd0458b74e',
   capability: {
     id: '2044302d-484b-4bfd-83c6-b7a8f988770d',
