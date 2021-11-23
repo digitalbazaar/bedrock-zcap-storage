@@ -1,6 +1,6 @@
 # bedrock-zcap-storage ChangeLog
 
-## 4.0.1 - 2021-11-xx
+## 4.0.1 - 2021-11-23
 
 ### Changed
 - **BREAKING**: Removed deprecated `fields` option. This should have been
