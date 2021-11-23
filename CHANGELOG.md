@@ -9,6 +9,9 @@
   particular `rootTarget`.
 
 ### Changed
+- **BREAKING**: Change internal collection names to follow naming convention.
+  This version is incompatible with previous versions and there is no
+  auto-migration code.
 - **BREAKING**: Change database format for storing revocations. The record
   format has been simplified to remove unnecessary database hashing. This
   version is incompatible with previous versions and there is no auto-migration
