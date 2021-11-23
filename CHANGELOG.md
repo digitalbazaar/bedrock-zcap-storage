@@ -5,12 +5,17 @@
 ### Added
 - **BREAKING**: Automatically remove zcap revocations that have expired from
   storage.
+- Add `count()` method for counting zcap revocations associated with a
+  particular `rootTarget`.
 
 ### Changed
 - **BREAKING**: Change database format for storing revocations. The record
   format has been simplified to remove unnecessary database hashing. This
   version is incompatible with previous versions and there is no auto-migration
   code.
+- **BREAKING**: Require a `rootTarget` to be associated with stored zcap
+  revocations so that they can be aggregated against a particular root object
+  or resource.
 
 ## 3.3.0 - 2021-07-23
 
