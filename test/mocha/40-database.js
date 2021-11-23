@@ -6,6 +6,7 @@
 const brZcapStorage = require('bedrock-zcap-storage');
 const mockData = require('./mock-data');
 const helpers = require('./helpers.js');
+const uuid = require('uuid-random');
 
 describe('Authorizations Database Tests', () => {
   describe('Indexes', async () => {
@@ -112,7 +113,7 @@ describe('Authorizations Database Tests', () => {
 
 describe('ZCaps Database Tests', () => {
   describe('Indexes', async () => {
-    beforeEach(async () => {
+    before(async () => {
       const collectionName = 'zcap-storage-zcap';
       await helpers.removeCollection(collectionName);
 
@@ -123,11 +124,16 @@ describe('ZCaps Database Tests', () => {
         referenceId: mockData.zcaps.alpha.referenceId,
         capability: mockData.zcaps.alpha.capability
       });
-      await brZcapStorage.zcaps.insert({
-        controller: mockData.zcaps.beta.controller,
-        referenceId: mockData.zcaps.beta.referenceId,
-        capability: mockData.zcaps.beta.capability
-      });
+      for(let i = 0; i < 1000; i++) {
+        await brZcapStorage.zcaps.insert({
+          controller: uuid(),
+          referenceId: uuid(),
+          capability: {
+            id: uuid(),
+            invoker: uuid(),
+            invocationTarget: uuid()
+          }});
+      }
     });
     it(`is properly indexed for 'controller' and 'referenceId' in get()`,
       async () => {
