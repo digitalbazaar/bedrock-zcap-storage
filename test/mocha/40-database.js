@@ -6,7 +6,7 @@
 const brZcapStorage = require('bedrock-zcap-storage');
 const mockData = require('./mock-data');
 const helpers = require('./helpers.js');
-const uuid = require('uuid-random');
+const {util: {uuid}} = require('bedrock');
 
 describe('Authorizations Database Tests', () => {
   describe('Indexes', async () => {
@@ -117,16 +117,18 @@ describe('ZCaps Database Tests', () => {
       const collectionName = 'zcap-storage-zcap';
       await helpers.removeCollection(collectionName);
 
-      // two zcaps are inserted here in order to do proper assertions
+      // multiple zcaps are inserted here in order to do proper assertions
       // for 'nReturned', 'totalKeysExamined' and 'totalDocsExamined'.
       await brZcapStorage.zcaps.insert({
         controller: mockData.zcaps.alpha.controller,
         referenceId: mockData.zcaps.alpha.referenceId,
         capability: mockData.zcaps.alpha.capability
       });
+      // the large amount of test records are needed here in order to ensure
+      // a consistent index is used via the winning query plan.
       for(let i = 0; i < 1000; i++) {
         await brZcapStorage.zcaps.insert({
-          controller: uuid(),
+          controller: mockData.zcaps.alpha.controller,
           referenceId: uuid(),
           capability: {
             id: uuid(),
@@ -166,7 +168,7 @@ describe('ZCaps Database Tests', () => {
           .should.equal('IXSCAN');
         // winning query plan is {controller: 1, referenceId: 1} in this case.
         executionStats.executionStages.inputStage.inputStage.inputStage
-          .keyPattern.should.eql({controller: 1, referenceId: 1});
+          .keyPattern.should.eql({controller: 1, id: 1});
       });
     it(`is properly indexed for 'controller' and 'referenceId' in find()`,
       async () => {
@@ -203,7 +205,7 @@ describe('ZCaps Database Tests', () => {
         executionStats.executionStages.inputStage.stage.should.equal('IXSCAN');
         // winning query plan is {controller: 1, referenceId: 1} in this case.
         executionStats.executionStages.inputStage.keyPattern.should.eql({
-          controller: 1, referenceId: 1});
+          controller: 1, id: 1});
       });
     it(`is properly indexed for 'controller' and 'invoker' in find()`,
       async () => {
@@ -222,7 +224,7 @@ describe('ZCaps Database Tests', () => {
         executionStats.executionStages.inputStage.stage.should.equal('IXSCAN');
         // winning query plan is {controller: 1, referenceId: 1} in this case.
         executionStats.executionStages.inputStage.keyPattern.should.eql({
-          controller: 1, referenceId: 1});
+          controller: 1, invoker: 1});
       });
     it(`is properly indexed for 'controller' and 'referenceId' in remove()`,
       async () => {
@@ -253,7 +255,7 @@ describe('ZCaps Database Tests', () => {
         executionStats.executionStages.inputStage.stage.should.equal('IXSCAN');
         // winning query plan is {controller: 1, referenceId: 1} in this case.
         executionStats.executionStages.inputStage.keyPattern.should.eql({
-          controller: 1, referenceId: 1});
+          controller: 1, id: 1});
       });
   });
 });
