@@ -116,7 +116,7 @@ describe('ZCaps Database Tests', () => {
       const collectionName = 'zcap-storage-zcap';
       await helpers.removeCollection(collectionName);
 
-      // two authorizations are inserted here in order to do proper assertions
+      // two zcaps are inserted here in order to do proper assertions
       // for 'nReturned', 'totalKeysExamined' and 'totalDocsExamined'.
       await brZcapStorage.zcaps.insert({
         controller: mockData.zcaps.alpha.controller,
@@ -249,5 +249,50 @@ describe('ZCaps Database Tests', () => {
         executionStats.executionStages.inputStage.keyPattern.should.eql({
           controller: 1, referenceId: 1});
       });
+  });
+});
+
+describe('Revocation Database Tests', () => {
+  describe('Indexes', async () => {
+    beforeEach(async () => {
+      const collectionName = 'zcap-storage-revocation';
+      await helpers.removeCollection(collectionName);
+
+      // two revocations are inserted here in order to do proper assertions
+      // for 'nReturned', 'totalKeysExamined' and 'totalDocsExamined'.
+      await brZcapStorage.revocations.insert(mockData.revocations.alpha);
+      await brZcapStorage.revocations.insert(mockData.revocations.beta);
+    });
+    it(`is properly indexed for 'meta.rootTarget' in count()`, async () => {
+      const {rootTarget} = mockData.revocations.alpha;
+      const {executionStats} = await brZcapStorage.revocations.count({
+        rootTarget,
+        explain: true
+      });
+      executionStats.nReturned.should.equal(1);
+      executionStats.totalKeysExamined.should.equal(1);
+      executionStats.totalDocsExamined.should.equal(1);
+      executionStats.executionStages.inputStage.stage.should.equal('IXSCAN');
+      executionStats.executionStages.inputStage.keyPattern
+        .should.eql({'meta.rootTarget': 1});
+    });
+    it(`is properly indexed for 'capability.id' and 'meta.delegator' in ` +
+      'isRevoked()', async () => {
+      const capabilities = [{
+        capabilityId: mockData.revocations.alpha.capability.id,
+        delegator: mockData.revocations.alpha.delegator
+      }];
+      const {executionStats} = await brZcapStorage.revocations.isRevoked({
+        capabilities,
+        explain: true
+      });
+      executionStats.nReturned.should.equal(1);
+      executionStats.totalKeysExamined.should.equal(1);
+      executionStats.totalDocsExamined.should.equal(1);
+      executionStats.executionStages.inputStage.inputStage.inputStage.stage
+        .should.equal('IXSCAN');
+      executionStats.executionStages.inputStage.inputStage.inputStage
+        .keyPattern.should.eql({'meta.delegator': 1, 'capability.id': 1});
+    });
   });
 });
