@@ -1,6 +1,6 @@
 # bedrock-zcap-storage ChangeLog
 
-## 4.1.0 - TBD
+## 4.1.0 - 2021-11-29
 
 ### Added
 - Added optional `explain` param to get more details about database performance.
