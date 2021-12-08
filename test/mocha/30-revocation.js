@@ -7,6 +7,7 @@ const brZcapStorage = require('bedrock-zcap-storage');
 const database = require('bedrock-mongodb');
 const mockData = require('./mock-data');
 const {util: {clone}} = require('bedrock');
+const helpers = require('./helpers.js');
 
 describe('revocation API', () => {
   describe('insert API', () => {
@@ -30,8 +31,28 @@ describe('revocation API', () => {
       findResult.should.have.length(1);
       findResult[0].capability.should.eql(revocation.capability);
     });
-    it('returns DuplicateError on same id and delegator', async () => {
+    it('inserts a revocation with capability expiration date',
+      async () => {
+        let err;
+        let result;
+        const revocation = clone(mockData.revocations.gamma);
+        try {
+          result = await brZcapStorage.revocations.insert(revocation);
+        } catch(e) {
+          err = e;
+        }
+        assertNoError(err);
+        should.exist(result);
+        result.capability.should.eql(revocation.capability);
 
+        const collection = database.collections['zcap-storage-revocation'];
+        const findResult = await collection.find({
+          'capability.id': revocation.capability.id,
+        }).toArray();
+        findResult.should.have.length(1);
+        findResult[0].capability.should.eql(revocation.capability);
+      });
+    it('returns DuplicateError on same id and delegator', async () => {
       const revocation = clone(mockData.revocations.beta);
 
       // insert beta revocation
@@ -50,9 +71,37 @@ describe('revocation API', () => {
       err.name.should.equal('DuplicateError');
     });
   });
+  describe('count API', () => {
+    let revocation;
+    before(async () => {
+      const collectionName = 'zcap-storage-revocation';
+      await helpers.removeCollection(collectionName);
+
+      revocation = clone(mockData.revocations.alpha);
+      await brZcapStorage.revocations.insert(revocation);
+    });
+    it(`returns a count of all revocations with the given 'rootTarget'`,
+      async () => {
+        const rootTarget = revocation.rootTarget;
+        let result;
+        let err;
+        try {
+          result = await brZcapStorage.revocations.count({rootTarget});
+        } catch(e) {
+          err = e;
+        }
+        assertNoError(err);
+        should.exist(result);
+        result.should.be.an('object');
+        result.count.should.equal(1);
+      });
+  });
   describe('isRevoked API', () => {
     let revocation;
     before(async () => {
+      const collectionName = 'zcap-storage-revocation';
+      await helpers.removeCollection(collectionName);
+
       revocation = clone(mockData.revocations.alpha);
       revocation.capability.id = '5acb9314-dd56-43c0-bb98-af6a940f69dc';
       await brZcapStorage.revocations.insert(revocation);
