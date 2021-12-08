@@ -14,6 +14,9 @@ const revocations = mocks.revocations = {};
 const authorizations = mocks.authorizations = {};
 const zcaps = mocks.zcaps = {};
 
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+
 actors.alpha = {
   id: 'urn:uuid:ec6bcc36-e7ab-46e9-aebb-ab57caee4fbe'
 };
@@ -79,6 +82,7 @@ revocations.gamma = {
   delegator: '3f1995e6-038b-41a2-9c87-70fd0458b74e',
   capability: {
     id: '2044302d-484b-4bfd-83c6-b7a8f988770d',
+    expires: tomorrow
   }
 };
 
