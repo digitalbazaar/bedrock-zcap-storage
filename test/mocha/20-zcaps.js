@@ -135,7 +135,6 @@ describe('zcaps API', () => {
         should.not.exist(result);
         should.exist(err);
         err.name.should.equal('TypeError');
-        err.message.should.equal('Either "id" or "referenceId" must be given.');
       });
     it('returns NotFoundError when no zcap is found', async () => {
       const {capability} = zcap;
@@ -152,7 +151,6 @@ describe('zcaps API', () => {
       should.not.exist(result);
       should.exist(err);
       err.name.should.equal('NotFoundError');
-      err.message.should.equal('ZCap capability not found.');
     });
   });
   describe('find API', async () => {
@@ -252,7 +250,6 @@ describe('zcaps API', () => {
         should.not.exist(result);
         should.exist(err);
         err.name.should.equal('TypeError');
-        err.message.should.equal('Either "id" or "referenceId" must be given.');
       });
   });
 });
