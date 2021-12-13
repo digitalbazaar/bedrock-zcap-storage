@@ -3,11 +3,11 @@
 ## 4.1.1 - TBD
 
 ### Changed
-- Fixed bug with database functions that were not being properly awaited inside
+- Fix bug with database functions that were not being properly awaited inside
   `authorization.find` and `zcaps.get`.
 
 ### Added
-- Added coverage tests in order to make sure all functions are working properly.
+- Add coverage tests in order to make sure all functions are working properly.
 
 ## 4.1.0 - 2021-11-29
 

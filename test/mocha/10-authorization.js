@@ -91,7 +91,7 @@ describe('authorization API', () => {
       should.exist(err);
       err.name.should.equal('DuplicateError');
     });
-    it(`returns TypeError when 'invocationTarget.id' is not a string `,
+    it(`returns TypeError when 'invocationTarget.id' is not a string`,
       async () => {
         let err;
         let result;
@@ -110,11 +110,8 @@ describe('authorization API', () => {
         should.not.exist(result);
         should.exist(err);
         err.name.should.equal('TypeError');
-        err.message.should.equal('"capability.invocationTarget" must be a ' +
-          'string or an object with where "capability.invocationTarget.id" ' +
-          'is a string.');
       });
-    it(`returns Error when 'invocationTarget' is not an absolute URI `,
+    it(`returns Error when 'invocationTarget' is not an absolute URI`,
       async () => {
         let err;
         let result;
@@ -131,8 +128,6 @@ describe('authorization API', () => {
         should.not.exist(result);
         should.exist(err);
         err.name.should.equal('Error');
-        err.message.should.equal('The ID of the capability\'s invocation ' +
-          'target must be an absolute URI.');
       });
   });
   describe('get API', async () => {
@@ -225,8 +220,6 @@ describe('authorization API', () => {
       should.not.exist(result);
       should.exist(err);
       err.name.should.equal('TypeError');
-      err.message.should.equal('Either "controller" or "invocationTarget" ' +
-        'must be given.');
     });
     it('returns NotFoundError when no authorization is found', async () => {
       let err;
@@ -242,7 +235,6 @@ describe('authorization API', () => {
       should.not.exist(result);
       should.exist(err);
       err.name.should.equal('NotFoundError');
-      err.message.should.equal('Authorization capability not found.');
     });
   });
   describe('find API', async () => {
