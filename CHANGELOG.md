@@ -1,6 +1,6 @@
 # bedrock-zcap-storage ChangeLog
 
-## 4.1.1 - TBD
+## 4.1.1 - 2021-12-14
 
 ### Changed
 - Fix bug with database functions that were not being properly awaited inside
