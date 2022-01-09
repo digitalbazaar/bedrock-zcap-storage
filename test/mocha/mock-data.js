@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019-2020 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2019-2022 Digital Bazaar, Inc. All rights reserved.
  */
 'use strict';
 
@@ -38,18 +38,14 @@ delegations.alpha = {
     // this is a unique ID
     id: `urn:zcap:056df9bc-93e2-4a0e-aa5a-d5217dcca018`,
     // this is typically a did:key: or did:v1:
-    invoker: actors.alpha.id,
+    controller: actors.alpha.id,
     // parentCapability could be root capability (e.g. a key or an LD
     // document).
     parentCapability:
       'https://example.com/keys/c9dd4d64-f9b7-4ac2-968f-9416da723dca',
     allowedAction: 'sign',
-    invocationTarget: {
-      // this is a public identifier for a key
-      verificationMethod: 'urn:uuid:c54a4a71-c6fb-43ea-b075-bf6abe67ebae',
-      id: 'https://example.com/keys/c9dd4d64-f9b7-4ac2-968f-9416da723dca',
-      type: 'Ed25519VerificationKey2018',
-    },
+    invocationTarget:
+      'https://example.com/keys/c9dd4d64-f9b7-4ac2-968f-9416da723dca',
     proof: {
       // ...,
       // deref verificationMethod to get its controller
@@ -91,7 +87,7 @@ authorizations.alpha = {
   capability: {
     '@context': bedrock.config.constants.SECURITY_CONTEXT_V2_URL,
     id: 'urn:zcap:3b175c87-09ee-44a4-9c97-dc2ffb329b22',
-    invoker: actors.alpha.id,
+    controller: actors.alpha.id,
     parentCapability:
       'https://example.com/keys/c2ed35fd-d8fe-4180-a5f5-a2eec739036b',
     allowedAction: 'sign',
@@ -107,7 +103,7 @@ authorizations.beta = {
   capability: {
     '@context': bedrock.config.constants.SECURITY_CONTEXT_V2_URL,
     id: 'urn:zcap:8bd184b4-a7bd-4ca3-a450-9f7d1e10eedd',
-    invoker: actors.alpha.id,
+    controller: actors.alpha.id,
     parentCapability:
       'https://example.com/keys/8b02af9e-abcb-4337-967a-987ed80329e7',
     allowedAction: 'sign',
@@ -124,7 +120,7 @@ zcaps.alpha = {
   capability: {
     '@context': bedrock.config.constants.SECURITY_CONTEXT_V2_URL,
     id: 'urn:zcap:c10e705a-9921-4517-98ca-f776bcb6e39b',
-    invoker: actors.alpha.id,
+    controller: actors.alpha.id,
     parentCapability:
       'https://example.com/keys/d6de2aef-d4ed-4d89-a794-d43cc185844b',
     allowedAction: 'sign',

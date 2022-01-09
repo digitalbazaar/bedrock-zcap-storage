@@ -132,7 +132,7 @@ describe('ZCaps Database Tests', () => {
           referenceId: uuid(),
           capability: {
             id: uuid(),
-            invoker: uuid(),
+            controller: uuid(),
             invocationTarget: uuid()
           }});
       }
@@ -210,7 +210,7 @@ describe('ZCaps Database Tests', () => {
         const {capability, controller} = mockData.zcaps.alpha;
         const query = {
           controller: helpers.hash(controller),
-          invoker: helpers.hash(capability.invoker)
+          invoker: helpers.hash(capability.controller)
         };
         const {executionStats} = await brZcapStorage.zcaps.find({
           query,
