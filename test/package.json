@@ -9,7 +9,7 @@
     "coverage-report": "nyc report"
   },
   "dependencies": {
-    "bedrock": "^3.2.0",
+    "bedrock": "^4.3.0",
     "bedrock-jsonld-document-loader": "^1.0.1",
     "bedrock-mongodb": "^8.0.1",
     "bedrock-security-context": "^3.0.0",
