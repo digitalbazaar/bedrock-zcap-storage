@@ -1,10 +1,11 @@
 # bedrock-zcap-storage ChangeLog
 
-## 5.0.0 - 2022-01-xx
+## 5.0.0 - 2022-01-11
 
 ### Changed
 - **BREAKING**: Get `invoker` for internal indexing from
   `capability.controller` and require `capability.controller` field to be set.
+- **BREAKING**: This version is compatible with zcap@7.
 
 ## 4.1.1 - 2021-12-14
 
