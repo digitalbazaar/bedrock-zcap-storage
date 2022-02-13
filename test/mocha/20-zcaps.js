@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2021 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2021-2022 Digital Bazaar, Inc. All rights reserved.
  */
 'use strict';
 
@@ -203,7 +203,11 @@ describe('zcaps API', () => {
     });
     it(`properly removes a zcap with a 'controller' and 'id'`,
       async () => {
+        // first get zcap to prime cache
         const {controller, capability} = zcap;
+        await brZcapStorage.zcaps.get({controller, id: capability.id});
+
+        // now delete zcap
         let err;
         let result;
         try {
@@ -217,6 +221,19 @@ describe('zcaps API', () => {
         assertNoError(err);
         should.exist(result);
         result.should.equal(true);
+
+        // get with `cache = false` should return not found
+        try {
+          await brZcapStorage.zcaps.get({
+            controller,
+            id: capability.id,
+            useCache: false
+          });
+        } catch(e) {
+          err = e;
+        }
+        should.exist(err);
+        err.name.should.equal('NotFoundError');
       });
     it(`properly removes a zcap with a 'controller' and 'referenceId'`,
       async () => {

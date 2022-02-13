@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/digitalbazaar/bedrock-zcap-storage",
   "dependencies": {
+    "@digitalbazaar/lru-memoize": "^2.1.0",
     "assert-plus": "^1.0.0"
   },
   "peerDependencies": {
