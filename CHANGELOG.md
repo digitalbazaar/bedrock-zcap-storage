@@ -1,6 +1,6 @@
 # bedrock-zcap-storage ChangeLog
 
-## 5.1.0 - 2022-02-xx
+## 5.1.0 - 2022-02-13
 
 ### Added
 - Add cache to `zcaps` collection.
