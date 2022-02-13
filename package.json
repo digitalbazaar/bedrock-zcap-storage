@@ -1,6 +1,6 @@
 {
   "name": "bedrock-zcap-storage",
-  "version": "5.1.0",
+  "version": "5.1.1-0",
   "description": "Bedrock Authorization Capability Storage",
   "main": "./lib",
   "scripts": {
