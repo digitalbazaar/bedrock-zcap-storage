@@ -1,6 +1,6 @@
 # bedrock-zcap-storage ChangeLog
 
-## 5.2.0 - 2022-03-xx
+## 5.2.0 - 2022-03-29
 
 ### Changed
 - Update peer deps:
