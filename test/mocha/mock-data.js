@@ -3,8 +3,6 @@
  */
 'use strict';
 
-const bedrock = require('bedrock');
-
 const mocks = {};
 module.exports = mocks;
 
