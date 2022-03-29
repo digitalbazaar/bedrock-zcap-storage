@@ -34,7 +34,7 @@ delegations.alpha = {
   // proof.
   delegator: 'did:v1:123123', // verificationMethod.controller
   capability: {
-    '@context': bedrock.config.constants.SECURITY_CONTEXT_V2_URL,
+    '@context': 'https://w3id.org/zcap/v1',
     // this is a unique ID
     id: `urn:zcap:056df9bc-93e2-4a0e-aa5a-d5217dcca018`,
     // this is typically a did:key: or did:v1:
@@ -85,7 +85,7 @@ revocations.gamma = {
 authorizations.alpha = {
   controller: 'urn:e6aa448c-8242-4dbd-a5a9-68d62862db6e',
   capability: {
-    '@context': bedrock.config.constants.SECURITY_CONTEXT_V2_URL,
+    '@context': 'https://w3id.org/zcap/v1',
     id: 'urn:zcap:3b175c87-09ee-44a4-9c97-dc2ffb329b22',
     controller: actors.alpha.id,
     parentCapability:
@@ -101,7 +101,7 @@ authorizations.alpha = {
 authorizations.beta = {
   controller: 'urn:4b32fae0-ac64-4d14-82b8-b99c4687140d',
   capability: {
-    '@context': bedrock.config.constants.SECURITY_CONTEXT_V2_URL,
+    '@context': 'https://w3id.org/zcap/v1',
     id: 'urn:zcap:8bd184b4-a7bd-4ca3-a450-9f7d1e10eedd',
     controller: actors.alpha.id,
     parentCapability:
@@ -118,7 +118,7 @@ zcaps.alpha = {
   referenceId: 'urn:uuid:eefa5a82-4a1a-40fd-b54c-e43d17d5d2fa',
   controller: 'urn:120a128e-b057-404b-ad14-0254c5ccb998',
   capability: {
-    '@context': bedrock.config.constants.SECURITY_CONTEXT_V2_URL,
+    '@context': 'https://w3id.org/zcap/v1',
     id: 'urn:zcap:c10e705a-9921-4517-98ca-f776bcb6e39b',
     controller: actors.alpha.id,
     parentCapability:

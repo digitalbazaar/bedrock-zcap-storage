@@ -15,7 +15,7 @@ describe('authorization API', () => {
       const collectionName = 'zcap-storage-authorization';
       await helpers.removeCollection(collectionName);
     });
-    it('properly inserts an authorization', async () => {
+    it.only('properly inserts an authorization', async () => {
       let err;
       let result;
       const authorization = clone(mockData.authorizations.alpha);
