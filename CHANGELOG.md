@@ -1,6 +1,6 @@
 # bedrock-zcap-storage ChangeLog
 
-## 6.0.0 - 2022-04-xx
+## 6.0.0 - 2022-04-01
 
 ### Changed
 - **BREAKING**: Rename package to `@bedrock/zcap-storage`.
