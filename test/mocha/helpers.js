@@ -1,14 +1,12 @@
-/*
- * Copyright (c) 2021 Digital Bazaar, Inc. All rights reserved.
+/*!
+ * Copyright (c) 2021-2022 Digital Bazaar, Inc. All rights reserved.
  */
-'use strict';
+import * as database from '@bedrock/mongodb';
 
-const database = require('bedrock-mongodb');
-
-exports.removeCollection = async collectionName => {
+export async function removeCollection(collectionName) {
   await database.collections[collectionName].deleteMany({});
-};
+}
 
-exports.hash = string => {
+export function hash(string) {
   return database.hash(string);
-};
+}
