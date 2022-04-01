@@ -1,8 +1,9 @@
 {
-  "name": "bedrock-zcap-storage",
+  "name": "@bedrock/zcap-storage",
   "version": "5.2.1-0",
+  "type": "module",
   "description": "Bedrock Authorization Capability Storage",
-  "main": "./lib",
+  "main": "./lib/index.js",
   "scripts": {
     "lint": "eslint lib test"
   },
@@ -13,6 +14,7 @@
   "keywords": [
     "bedrock",
     "zcap",
+    "zcap-ld",
     "ocap",
     "ocap-ld",
     "authorization",
@@ -30,12 +32,11 @@
   "homepage": "https://github.com/digitalbazaar/bedrock-zcap-storage",
   "dependencies": {
     "@digitalbazaar/lru-memoize": "^2.1.0",
-    "assert-plus": "^1.0.0",
-    "esm": "^3.2.25"
+    "assert-plus": "^1.0.0"
   },
   "peerDependencies": {
-    "bedrock": "^4.5.0",
-    "bedrock-mongodb": "^8.5.0"
+    "@bedrock/core": "^5.0.0",
+    "@bedrock/mongodb": "^9.0.0"
   },
   "directories": {
     "lib": "./lib"

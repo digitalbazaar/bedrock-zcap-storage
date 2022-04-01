@@ -1,13 +1,13 @@
 /*!
- * Copyright (c) 2019-2020 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2019-2022 Digital Bazaar, Inc. All rights reserved.
  */
-'use strict';
+import * as bedrock from '@bedrock/core';
+import * as brZcapStorage from '@bedrock/zcap-storage';
+import * as database from '@bedrock/mongodb';
+import * as helpers from './helpers.js';
+import {mocks as mockData} from './mock-data.js';
 
-const brZcapStorage = require('bedrock-zcap-storage');
-const database = require('bedrock-mongodb');
-const mockData = require('./mock-data');
-const {util: {clone}} = require('bedrock');
-const helpers = require('./helpers.js');
+const {util: {clone}} = bedrock;
 
 describe('revocation API', () => {
   describe('insert API', () => {

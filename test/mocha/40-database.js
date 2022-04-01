@@ -1,12 +1,12 @@
 /*!
- * Copyright (c) 2021 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2021-2022 Digital Bazaar, Inc. All rights reserved.
  */
-'use strict';
+import * as bedrock from '@bedrock/core';
+import * as brZcapStorage from '@bedrock/zcap-storage';
+import * as helpers from './helpers.js';
+import {mocks as mockData} from './mock-data.js';
 
-const brZcapStorage = require('bedrock-zcap-storage');
-const mockData = require('./mock-data');
-const helpers = require('./helpers.js');
-const {util: {uuid}} = require('bedrock');
+const {util: {uuid}} = bedrock;
 
 describe('Authorizations Database Tests', () => {
   describe('Indexes', async () => {

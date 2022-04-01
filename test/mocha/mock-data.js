@@ -1,10 +1,7 @@
 /*!
  * Copyright (c) 2019-2022 Digital Bazaar, Inc. All rights reserved.
  */
-'use strict';
-
-const mocks = {};
-module.exports = mocks;
+export const mocks = {};
 
 const actors = mocks.actors = {};
 const delegations = mocks.delegations = {};
