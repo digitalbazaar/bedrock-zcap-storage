@@ -10,14 +10,16 @@
     "coverage-report": "c8 report"
   },
   "dependencies": {
-    "@bedrock/core": "^5.0.0",
-    "@bedrock/https-agent": "^3.0.0",
-    "@bedrock/jsonld-document-loader": "^2.0.0",
-    "@bedrock/mongodb": "^9.0.0",
-    "@bedrock/test": "^7.0.0",
+    "@bedrock/core": "^6.0.0",
+    "@bedrock/https-agent": "^4.0.0",
+    "@bedrock/jsonld-document-loader": "^3.0.0",
+    "@bedrock/mongodb": "^10.0.0",
+    "@bedrock/test": "^8.0.0",
     "@bedrock/zcap-storage": "file:..",
     "c8": "^7.11.0",
-    "cross-env": "^7.0.2"
+    "cross-env": "^7.0.2",
+    "klona": "^2.0.5",
+    "uuid": "^8.3.2"
   },
   "c8": {
     "excludeNodeModules": false,
