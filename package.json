@@ -35,8 +35,8 @@
     "assert-plus": "^1.0.0"
   },
   "peerDependencies": {
-    "@bedrock/core": "^5.0.0",
-    "@bedrock/mongodb": "^9.0.0"
+    "@bedrock/core": "^6.0.0",
+    "@bedrock/mongodb": "^10.0.0"
   },
   "directories": {
     "lib": "./lib"
