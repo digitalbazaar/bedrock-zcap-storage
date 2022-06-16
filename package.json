@@ -1,9 +1,12 @@
 {
   "name": "@bedrock/zcap-storage",
   "version": "7.0.1-0",
-  "type": "module",
   "description": "Bedrock Authorization Capability Storage",
+  "type": "module",
   "main": "./lib/index.js",
+  "files": [
+    "lib/**/*.js"
+  ],
   "scripts": {
     "lint": "eslint lib test"
   },
