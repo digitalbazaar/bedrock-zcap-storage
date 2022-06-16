@@ -34,20 +34,20 @@
   },
   "homepage": "https://github.com/digitalbazaar/bedrock-zcap-storage",
   "dependencies": {
-    "@digitalbazaar/lru-memoize": "^2.2.0",
+    "@digitalbazaar/lru-memoize": "^3.0.0",
     "assert-plus": "^1.0.0"
   },
   "peerDependencies": {
-    "@bedrock/core": "^6.0.0",
+    "@bedrock/core": "^6.0.1",
     "@bedrock/mongodb": "^10.0.0"
   },
   "directories": {
     "lib": "./lib"
   },
   "devDependencies": {
-    "eslint": "^8.17.0",
+    "eslint": "^8.18.0",
     "eslint-config-digitalbazaar": "^3.0.0",
-    "eslint-plugin-jsdoc": "^39.3.2",
+    "eslint-plugin-jsdoc": "^39.3.3",
     "eslint-plugin-unicorn": "^42.0.0",
     "jsdoc-to-markdown": "^7.1.1"
   }
