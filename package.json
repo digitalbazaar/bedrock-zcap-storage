@@ -8,7 +8,7 @@
     "lib/**/*.js"
   ],
   "scripts": {
-    "lint": "eslint lib test"
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -45,9 +45,10 @@
     "lib": "./lib"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-digitalbazaar": "^2.8.0",
-    "eslint-plugin-jsdoc": "^37.9.7",
+    "eslint": "^8.17.0",
+    "eslint-config-digitalbazaar": "^3.0.0",
+    "eslint-plugin-jsdoc": "^39.3.2",
+    "eslint-plugin-unicorn": "^42.0.0",
     "jsdoc-to-markdown": "^7.1.1"
   }
 }
