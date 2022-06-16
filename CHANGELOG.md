@@ -1,5 +1,10 @@
 # bedrock-zcap-storage ChangeLog
 
+## 7.1.0 - 2022-xx-xx
+
+### Changed
+- Add `package.json` `files` field.
+
 ## 7.0.0 - 2022-04-28
 
 ### Changed
