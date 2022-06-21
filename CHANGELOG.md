@@ -1,8 +1,9 @@
 # bedrock-zcap-storage ChangeLog
 
-## 7.1.0 - 2022-xx-xx
+## 8.0.0 - 2022-xx-xx
 
 ### Changed
+- **BREAKING**: Require Node.js >=16.
 - Add `package.json` `files` field.
 - Lint module.
 - Update dependencies.
