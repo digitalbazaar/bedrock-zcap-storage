@@ -1,5 +1,12 @@
 # bedrock-zcap-storage ChangeLog
 
+## 8.0.1 - 2023-09-xx
+
+### Fixed
+- Extend the expiration time for revocation records by one day. A revocation
+  record must not expire too soon to prevent conflicts with expiration-related
+  grace periods elsewhere in the stack (e.g., clock skew).
+
 ## 8.0.0 - 2022-06-21
 
 ### Changed
