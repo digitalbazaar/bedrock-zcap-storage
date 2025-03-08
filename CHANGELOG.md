@@ -1,6 +1,6 @@
 # bedrock-zcap-storage ChangeLog
 
-## 9.0.0 - 2025-03-xx
+## 9.0.0 - 2025-03-07
 
 ### Changed
 - Update dependencies.
