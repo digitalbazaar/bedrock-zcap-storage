@@ -1,10 +1,9 @@
 /*!
- * Copyright (c) 2019-2022 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2019-2025 Digital Bazaar, Inc. All rights reserved.
  */
 import * as brZcapStorage from '@bedrock/zcap-storage';
 import * as database from '@bedrock/mongodb';
 import * as helpers from './helpers.js';
-import {klona} from 'klona';
 import {mocks as mockData} from './mock-data.js';
 
 describe('revocation API', () => {
@@ -12,7 +11,7 @@ describe('revocation API', () => {
     it('properly inserts a revocation', async () => {
       let err;
       let result;
-      const revocation = klona(mockData.revocations.alpha);
+      const revocation = structuredClone(mockData.revocations.alpha);
       try {
         result = await brZcapStorage.revocations.insert(revocation);
       } catch(e) {
@@ -33,7 +32,7 @@ describe('revocation API', () => {
       async () => {
         let err;
         let result;
-        const revocation = klona(mockData.revocations.gamma);
+        const revocation = structuredClone(mockData.revocations.gamma);
         try {
           result = await brZcapStorage.revocations.insert(revocation);
         } catch(e) {
@@ -51,7 +50,7 @@ describe('revocation API', () => {
         findResult[0].capability.should.eql(revocation.capability);
       });
     it('returns DuplicateError on same id and delegator', async () => {
-      const revocation = klona(mockData.revocations.beta);
+      const revocation = structuredClone(mockData.revocations.beta);
 
       // insert beta revocation
       await brZcapStorage.revocations.insert(revocation);
@@ -75,7 +74,7 @@ describe('revocation API', () => {
       const collectionName = 'zcap-storage-revocation';
       await helpers.removeCollection(collectionName);
 
-      revocation = klona(mockData.revocations.alpha);
+      revocation = structuredClone(mockData.revocations.alpha);
       await brZcapStorage.revocations.insert(revocation);
     });
     it(`returns a count of all revocations with the given 'rootTarget'`,
@@ -100,7 +99,7 @@ describe('revocation API', () => {
       const collectionName = 'zcap-storage-revocation';
       await helpers.removeCollection(collectionName);
 
-      revocation = klona(mockData.revocations.alpha);
+      revocation = structuredClone(mockData.revocations.alpha);
       revocation.capability.id = '5acb9314-dd56-43c0-bb98-af6a940f69dc';
       await brZcapStorage.revocations.insert(revocation);
     });
