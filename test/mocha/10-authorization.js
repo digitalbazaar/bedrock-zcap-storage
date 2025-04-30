@@ -1,10 +1,9 @@
 /*!
- * Copyright (c) 2021-2022 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2021-2025 Digital Bazaar, Inc. All rights reserved.
  */
 import * as brZcapStorage from '@bedrock/zcap-storage';
 import * as database from '@bedrock/mongodb';
 import * as helpers from './helpers.js';
-import {klona} from 'klona';
 import {mocks as mockData} from './mock-data.js';
 
 describe('authorization API', () => {
@@ -16,7 +15,7 @@ describe('authorization API', () => {
     it('properly inserts an authorization', async () => {
       let err;
       let result;
-      const authorization = klona(mockData.authorizations.alpha);
+      const authorization = structuredClone(mockData.authorizations.alpha);
       try {
         result = await brZcapStorage.authorizations.insert({
           controller: authorization.controller,
@@ -41,7 +40,7 @@ describe('authorization API', () => {
       'object', async () => {
       let err;
       let result;
-      const authorization = klona(mockData.authorizations.alpha);
+      const authorization = structuredClone(mockData.authorizations.alpha);
       authorization.capability.invocationTarget = {
         id: 'urn:uuid:e30d372c-7ab2-429c-91b0-03dc3bcc6289'
       };
@@ -66,7 +65,7 @@ describe('authorization API', () => {
       findResult[0].authorization.should.eql(authorization);
     });
     it(`returns DuplicateError on same 'id' and 'controller'`, async () => {
-      const authorization = klona(mockData.authorizations.alpha);
+      const authorization = structuredClone(mockData.authorizations.alpha);
 
       // insert alpha authorization
       await brZcapStorage.authorizations.insert({
@@ -93,7 +92,7 @@ describe('authorization API', () => {
       async () => {
         let err;
         let result;
-        const authorization = klona(mockData.authorizations.alpha);
+        const authorization = structuredClone(mockData.authorizations.alpha);
         authorization.capability.invocationTarget = {
           id: {}
         };
@@ -113,7 +112,7 @@ describe('authorization API', () => {
       async () => {
         let err;
         let result;
-        const authorization = klona(mockData.authorizations.alpha);
+        const authorization = structuredClone(mockData.authorizations.alpha);
         authorization.capability.invocationTarget = '123456';
         try {
           result = await brZcapStorage.authorizations.insert({
@@ -134,7 +133,7 @@ describe('authorization API', () => {
       const collectionName = 'zcap-storage-authorization';
       await helpers.removeCollection(collectionName);
 
-      authorization = klona(mockData.authorizations.alpha);
+      authorization = structuredClone(mockData.authorizations.alpha);
       await brZcapStorage.authorizations.insert({
         controller: authorization.controller,
         capability: authorization.capability
@@ -241,7 +240,7 @@ describe('authorization API', () => {
       const collectionName = 'zcap-storage-authorization';
       await helpers.removeCollection(collectionName);
 
-      authorization = klona(mockData.authorizations.alpha);
+      authorization = structuredClone(mockData.authorizations.alpha);
       await brZcapStorage.authorizations.insert({
         controller: authorization.controller,
         capability: authorization.capability
@@ -271,7 +270,7 @@ describe('authorization API', () => {
       const collectionName = 'zcap-storage-authorization';
       await helpers.removeCollection(collectionName);
 
-      authorization = klona(mockData.authorizations.alpha);
+      authorization = structuredClone(mockData.authorizations.alpha);
       await brZcapStorage.authorizations.insert({
         controller: authorization.controller,
         capability: authorization.capability

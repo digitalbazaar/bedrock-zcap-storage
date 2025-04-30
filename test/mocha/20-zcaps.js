@@ -1,10 +1,9 @@
 /*!
- * Copyright (c) 2021-2022 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2021-2025 Digital Bazaar, Inc. All rights reserved.
  */
 import * as brZcapStorage from '@bedrock/zcap-storage';
 import * as database from '@bedrock/mongodb';
 import * as helpers from './helpers.js';
-import {klona} from 'klona';
 import {mocks as mockData} from './mock-data.js';
 
 describe('zcaps API', () => {
@@ -16,7 +15,7 @@ describe('zcaps API', () => {
     it('properly inserts a zcap', async () => {
       let err;
       let result;
-      const zcap = klona(mockData.zcaps.alpha);
+      const zcap = structuredClone(mockData.zcaps.alpha);
       const {controller, referenceId, capability} = zcap;
       try {
         result = await brZcapStorage.zcaps.insert({
@@ -43,7 +42,7 @@ describe('zcaps API', () => {
     });
     it(`returns DuplicateError on same 'controller', 'referenceId' and ` +
       `'capability'`, async () => {
-      const zcap = klona(mockData.zcaps.alpha);
+      const zcap = structuredClone(mockData.zcaps.alpha);
       const {controller, referenceId, capability} = zcap;
 
       // insert alpha zcap
@@ -76,7 +75,7 @@ describe('zcaps API', () => {
       const collectionName = 'zcap-storage-zcap';
       await helpers.removeCollection(collectionName);
 
-      zcap = klona(mockData.zcaps.alpha);
+      zcap = structuredClone(mockData.zcaps.alpha);
       const {controller, referenceId, capability} = zcap;
       await brZcapStorage.zcaps.insert({
         controller,
@@ -157,7 +156,7 @@ describe('zcaps API', () => {
       const collectionName = 'zcap-storage-zcap';
       await helpers.removeCollection(collectionName);
 
-      zcap = klona(mockData.zcaps.alpha);
+      zcap = structuredClone(mockData.zcaps.alpha);
       const {controller, referenceId, capability} = zcap;
       await brZcapStorage.zcaps.insert({
         controller,
@@ -191,7 +190,7 @@ describe('zcaps API', () => {
       const collectionName = 'zcap-storage-zcap';
       await helpers.removeCollection(collectionName);
 
-      zcap = klona(mockData.zcaps.alpha);
+      zcap = structuredClone(mockData.zcaps.alpha);
       const {controller, referenceId, capability} = zcap;
       await brZcapStorage.zcaps.insert({
         controller,
