@@ -95,6 +95,7 @@ describe('revocation API', () => {
   });
   describe('isRevoked API', () => {
     let revocation;
+    let revocation2;
     before(async () => {
       const collectionName = 'zcap-storage-revocation';
       await helpers.removeCollection(collectionName);
@@ -102,6 +103,10 @@ describe('revocation API', () => {
       revocation = structuredClone(mockData.revocations.alpha);
       revocation.capability.id = '5acb9314-dd56-43c0-bb98-af6a940f69dc';
       await brZcapStorage.revocations.insert(revocation);
+
+      revocation2 = structuredClone(mockData.revocations.alpha);
+      revocation2.capability.id = '5acb9314-dd56-43c0-bb98-af6a940f69dc' + '-2';
+      await brZcapStorage.revocations.insert(revocation2);
     });
     it('returns true on a matching revocation', async () => {
       const capabilities = [{
@@ -174,6 +179,35 @@ describe('revocation API', () => {
       should.exist(result);
       result.should.be.a('boolean');
       result.should.be.false;
+    });
+    it('returns true w/ a matching revocation amongst others', async () => {
+      const capabilities = [{
+        capabilityId: revocation2.capability.id,
+        delegator: revocation2.delegator
+      }, {
+        capabilityId: revocation2.capability.id + '-not-revoked-1',
+        delegator: revocation2.delegator
+      }, {
+        capabilityId: revocation2.capability.id + '-not-revoked-2',
+        delegator: revocation2.delegator + 'other'
+      }];
+      let result1;
+      let result2;
+      let err;
+      try {
+        // call twice, first should use database, second should include cache
+        result1 = await brZcapStorage.revocations.isRevoked({capabilities});
+        result2 = await brZcapStorage.revocations.isRevoked({capabilities});
+      } catch(e) {
+        err = e;
+      }
+      assertNoError(err);
+      should.exist(result1);
+      result1.should.be.a('boolean');
+      result1.should.be.true;
+      should.exist(result2);
+      result2.should.be.a('boolean');
+      result2.should.be.true;
     });
   });
 });
