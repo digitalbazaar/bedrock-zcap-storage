@@ -1,6 +1,6 @@
 {
   "name": "@bedrock/zcap-storage",
-  "version": "9.2.0",
+  "version": "9.2.1-0",
   "description": "Bedrock Authorization Capability Storage",
   "type": "module",
   "main": "./lib/index.js",
