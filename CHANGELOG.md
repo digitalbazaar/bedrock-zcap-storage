@@ -1,6 +1,6 @@
 # bedrock-zcap-storage ChangeLog
 
-## 9.2.0 - 2025-mm-dd
+## 9.2.0 - 2025-09-16
 
 ### Added
 - Add revocation cache for faster revocation checks. Default TTL is 5 minutes
