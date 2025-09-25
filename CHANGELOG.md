@@ -1,5 +1,11 @@
 # bedrock-zcap-storage ChangeLog
 
+## 9.3.0 - 2025-mm-dd
+
+### Added
+- Expose `helpers.inspectCapabilityChain()` for connecting to revocation
+  storage.
+
 ## 9.2.0 - 2025-09-16
 
 ### Added
