@@ -3,8 +3,8 @@
 ## 9.3.0 - 2025-mm-dd
 
 ### Added
-- Expose `helpers.inspectCapabilityChain()` for connecting to revocation
-  storage.
+- Expose `helpers.inspectCapabilityChain()` for connecting capability chain
+  checks to revocation (and possible future `policy` storage).
 
 ## 9.2.0 - 2025-09-16
 
