@@ -1,6 +1,6 @@
 # bedrock-zcap-storage ChangeLog
 
-## 9.3.0 - 2025-mm-dd
+## 9.3.0 - 2025-09-27
 
 ### Added
 - Expose `helpers.inspectCapabilityChain()` for connecting capability chain
