@@ -85,6 +85,7 @@ delegations.alpha = {
 policies.alpha = {
   sequence: 0,
   controller: actors.alpha.id,
+  delegate: actors.beta.id,
   refresh: {
     constraints: {
       maxTtlBeforeRefresh: 0
@@ -95,6 +96,7 @@ policies.alpha = {
 policies.beta = {
   sequence: 0,
   controller: actors.beta.id,
+  delegate: actors.alpha.id,
   refresh: {
     constraints: {
       maxTtlBeforeRefresh: 1000

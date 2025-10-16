@@ -4,9 +4,9 @@
 
 ### Added
 - Add `policies` feature and API. A single authorization capability policy can
-  be created per `controller` of the policy (which is the same party for which
-  the policy is operative). The policy's first use case is to express
-  constraints for automated zcap refreshing.
+  be created per `controller` and `delegate` of the policy (the `controller`
+  determines the policy and it is operative for the `delegate`). The policy's
+  first use case is to express constraints for automated zcap refreshing.
 
 ## 9.3.0 - 2025-09-27
 

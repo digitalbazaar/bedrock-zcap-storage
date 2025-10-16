@@ -265,20 +265,42 @@ describe('Policy Database Tests', () => {
       await brZcapStorage.policies.insert({policy: mockData.policies.alpha});
       await brZcapStorage.policies.insert({policy: mockData.policies.beta});
     });
-    it(`is properly indexed for 'controller' in get()`, async () => {
-      const {controller} = mockData.policies.alpha;
-      const {executionStats} = await brZcapStorage.policies.get({
-        controller,
-        explain: true
+    it(`is properly indexed for 'controller' and 'delegate' in get()`,
+      async () => {
+        const {controller, delegate} = mockData.policies.alpha;
+        const {executionStats} = await brZcapStorage.policies.get({
+          controller,
+          delegate,
+          explain: true
+        });
+        executionStats.nReturned.should.equal(1);
+        executionStats.totalKeysExamined.should.equal(1);
+        executionStats.totalDocsExamined.should.equal(1);
+        executionStats.executionStages.inputStage.inputStage.inputStage.stage
+          .should.equal('IXSCAN');
+        executionStats.executionStages.inputStage.inputStage.inputStage
+          .keyPattern.should.eql({
+            'policy.controller': 1,
+            'policy.delegate': 1
+          });
       });
-      executionStats.nReturned.should.equal(1);
-      executionStats.totalKeysExamined.should.equal(1);
-      executionStats.totalDocsExamined.should.equal(1);
-      executionStats.executionStages.inputStage.inputStage.inputStage.stage
-        .should.equal('IXSCAN');
-      executionStats.executionStages.inputStage.inputStage.inputStage
-        .keyPattern.should.eql({'policy.controller': 1});
-    });
+    it(`is properly indexed for 'controller' in find()`,
+      async () => {
+        const {controller} = mockData.policies.alpha;
+        const query = {'policy.controller': controller};
+        const {executionStats} = await brZcapStorage.policies.find({
+          query,
+          explain: true
+        });
+        executionStats.nReturned.should.equal(1);
+        executionStats.totalKeysExamined.should.equal(1);
+        executionStats.totalDocsExamined.should.equal(1);
+        executionStats.executionStages.inputStage.stage.should.equal('IXSCAN');
+        executionStats.executionStages.inputStage.keyPattern.should.eql({
+          'policy.controller': 1,
+          'policy.delegate': 1
+        });
+      });
   });
 });
 
