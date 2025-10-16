@@ -24,14 +24,17 @@ describe('zcap policies API', () => {
       assertNoError(err);
       should.exist(result);
       result.policy.controller.should.equal(policy.controller);
+      result.policy.delegate.should.equal(policy.delegate);
       result.policy.sequence.should.equal(policy.sequence);
 
       const collection = database.collections['zcap-storage-policy'];
       const findResult = await collection.find({
-        'policy.controller': policy.controller
+        'policy.controller': policy.controller,
+        'policy.delegate': policy.delegate
       }).toArray();
       findResult.should.have.length(1);
       findResult[0].policy.controller.should.eql(policy.controller);
+      findResult[0].policy.delegate.should.eql(policy.delegate);
     });
     it(`throws when 'sequence' is not zero`, async () => {
       const policy = structuredClone(mockData.policies.alpha);
@@ -47,24 +50,25 @@ describe('zcap policies API', () => {
       should.not.exist(result);
       should.exist(err);
     });
-    it(`throws DuplicateError on same 'controller'`, async () => {
-      const policy = structuredClone(mockData.policies.alpha);
+    it(`throws DuplicateError on same 'controller' and 'delegate'`,
+      async () => {
+        const policy = structuredClone(mockData.policies.alpha);
 
-      // insert alpha policy
-      await brZcapStorage.policies.insert({policy});
+        // insert alpha policy
+        await brZcapStorage.policies.insert({policy});
 
-      // attempt to insert same policy again
-      let err;
-      let result;
-      try {
-        result = await brZcapStorage.policies.insert({policy});
-      } catch(e) {
-        err = e;
-      }
-      should.not.exist(result);
-      should.exist(err);
-      err.name.should.equal('DuplicateError');
-    });
+        // attempt to insert same policy again
+        let err;
+        let result;
+        try {
+          result = await brZcapStorage.policies.insert({policy});
+        } catch(e) {
+          err = e;
+        }
+        should.not.exist(result);
+        should.exist(err);
+        err.name.should.equal('DuplicateError');
+      });
   });
   describe('get API', async () => {
     let policy;
@@ -75,19 +79,20 @@ describe('zcap policies API', () => {
       policy = structuredClone(mockData.policies.alpha);
       await brZcapStorage.policies.insert({policy});
     });
-    it(`properly gets a policy with 'controller'`, async () => {
-      const {controller} = policy;
-      let err;
-      let result;
-      try {
-        result = await brZcapStorage.policies.get({controller});
-      } catch(e) {
-        err = e;
-      }
-      assertNoError(err);
-      should.exist(result);
-      result.policy.should.deep.equal(policy);
-    });
+    it(`properly gets a policy with 'controller' and 'delegate'`,
+      async () => {
+        const {controller, delegate} = policy;
+        let err;
+        let result;
+        try {
+          result = await brZcapStorage.policies.get({controller, delegate});
+        } catch(e) {
+          err = e;
+        }
+        assertNoError(err);
+        should.exist(result);
+        result.policy.should.deep.equal(policy);
+      });
     it(`throws when no 'controller' is provided`, async () => {
       let err;
       let result;
@@ -99,11 +104,25 @@ describe('zcap policies API', () => {
       should.not.exist(result);
       should.exist(err);
     });
+    it(`throws when no 'delegate' is provided`, async () => {
+      const {controller} = policy;
+      let err;
+      let result;
+      try {
+        result = await brZcapStorage.policies.get({controller});
+      } catch(e) {
+        err = e;
+      }
+      should.not.exist(result);
+      should.exist(err);
+    });
     it('throws NotFoundError when no policy is found', async () => {
       let err;
       let result;
       try {
-        result = await brZcapStorage.policies.get({controller: '123456'});
+        result = await brZcapStorage.policies.get({
+          controller: '123456', delegate: '654321'
+        });
       } catch(e) {
         err = e;
       }
@@ -139,6 +158,7 @@ describe('zcap policies API', () => {
       }).toArray();
       findResult.should.have.length(1);
       findResult[0].policy.controller.should.eql(policy.controller);
+      findResult[0].policy.delegate.should.eql(policy.delegate);
     });
     it(`throws InvalidStateError with improper 'sequence' value`, async () => {
       const policy = structuredClone(mockData.policies.alpha);
@@ -166,27 +186,14 @@ describe('zcap policies API', () => {
       policy = structuredClone(mockData.policies.alpha);
       await brZcapStorage.policies.insert({policy});
     });
-    it(`properly removes a policy with a 'controller'`, async () => {
-      const {controller} = policy;
-      let err;
-      let result;
-      try {
-        result = await brZcapStorage.policies.remove({controller});
-      } catch(e) {
-        err = e;
-      }
-      assertNoError(err);
-      should.exist(result);
-      result.should.equal(true);
-    });
-    it(`properly removes a policy with a 'controller' and 'sequence'`,
+    it(`properly removes a policy with a 'controller' and 'delegate'`,
       async () => {
-        const {controller} = policy;
+        const {controller, delegate} = policy;
         let err;
         let result;
         try {
           result = await brZcapStorage.policies.remove({
-            controller, sequence: 0
+            controller, delegate
           });
         } catch(e) {
           err = e;
@@ -195,14 +202,42 @@ describe('zcap policies API', () => {
         should.exist(result);
         result.should.equal(true);
       });
-    it(`removes no policy with mismatched 'controller' and 'sequence'`,
+    it(`throws when no 'delegate' is provided`, async () => {
+      const {controller} = policy;
+      let err;
+      let result;
+      try {
+        result = await brZcapStorage.policies.remove({controller});
+      } catch(e) {
+        err = e;
+      }
+      should.not.exist(result);
+      should.exist(err);
+    });
+    it(`properly removes a policy w/ 'controller', 'delegate', 'sequence'`,
       async () => {
-        const {controller} = policy;
+        const {controller, delegate} = policy;
         let err;
         let result;
         try {
           result = await brZcapStorage.policies.remove({
-            controller, sequence: 1
+            controller, delegate, sequence: 0
+          });
+        } catch(e) {
+          err = e;
+        }
+        assertNoError(err);
+        should.exist(result);
+        result.should.equal(true);
+      });
+    it(`removes no policy w/ mismatched 'controller', 'delegate', 'sequence'`,
+      async () => {
+        const {controller, delegate} = policy;
+        let err;
+        let result;
+        try {
+          result = await brZcapStorage.policies.remove({
+            controller, delegate, sequence: 1
           });
         } catch(e) {
           err = e;
