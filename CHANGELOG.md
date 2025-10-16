@@ -1,5 +1,13 @@
 # bedrock-zcap-storage ChangeLog
 
+## 9.4.0 - 2025-10-dd
+
+### Added
+- Add `policies` feature and API. A single authorization capability policy can
+  be created per `controller` of the policy (which is the same party for which
+  the policy is operative). The policy's first use case is to express
+  constraints for automated zcap refreshing.
+
 ## 9.3.0 - 2025-09-27
 
 ### Added
