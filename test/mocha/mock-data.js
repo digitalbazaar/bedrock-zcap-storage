@@ -4,9 +4,10 @@
 export const mocks = {};
 
 const actors = mocks.actors = {};
-const delegations = mocks.delegations = {};
-const revocations = mocks.revocations = {};
 const authorizations = mocks.authorizations = {};
+const delegations = mocks.delegations = {};
+const policies = mocks.policies = {};
+const revocations = mocks.revocations = {};
 const zcaps = mocks.zcaps = {};
 
 const tomorrow = new Date();
@@ -18,63 +19,6 @@ actors.alpha = {
 
 actors.beta = {
   id: 'urn:uuid:df29c22a-9c68-448c-a04b-345383aaf8ff'
-};
-
-delegations.alpha = {
-  // this corresponds to the bedrock-account ID
-  controller: 'urn:uuid:defa6262-6fa2-4eb4-a8a3-924580a47900',
-  domain: 'https://example.com',
-  // this is a profile ID, this is computed (eventually) by calling
-  // did-veres-one.foo to derive the DID from the verificationMethod in the
-  // proof.
-  delegator: 'did:v1:123123', // verificationMethod.controller
-  capability: {
-    '@context': 'https://w3id.org/zcap/v1',
-    // this is a unique ID
-    id: `urn:zcap:056df9bc-93e2-4a0e-aa5a-d5217dcca018`,
-    // this is typically a did:key: or did:v1:
-    controller: actors.alpha.id,
-    // parentCapability could be root capability (e.g. a key or an LD
-    // document).
-    parentCapability:
-      'https://example.com/keys/c9dd4d64-f9b7-4ac2-968f-9416da723dca',
-    allowedAction: 'sign',
-    invocationTarget:
-      'https://example.com/keys/c9dd4d64-f9b7-4ac2-968f-9416da723dca',
-    proof: {
-      // ...,
-      // deref verificationMethod to get its controller
-      verificationMethod: 'did:v1:123123#123123'
-    }
-  }
-};
-
-revocations.alpha = {
-  // this is for a service object ID such as the ID of a keystore/EDV/etc.
-  rootTarget: 'https://example.com/edvs/123',
-  delegator: '51689f5c-a8ea-4924-8108-e7461a54989f',
-  capability: {
-    id: '5cef0111-04f3-4d6b-9a67-48d7013fea9a',
-  }
-};
-
-revocations.beta = {
-  // this is for a service object ID such as the ID of a keystore/EDV/etc.
-  rootTarget: 'https://example.com/keystores/abc',
-  delegator: '93ae803d-e753-4789-83a1-2b3e807abd7b',
-  capability: {
-    id: '8677f033-d4fd-44c6-afb2-a49688d68c21',
-  }
-};
-
-revocations.gamma = {
-  // this is for a service object ID such as the ID of a keystore/EDV/etc.
-  rootTarget: 'https://example.com/verifiers/xyz',
-  delegator: '3f1995e6-038b-41a2-9c87-70fd0458b74e',
-  capability: {
-    id: '2044302d-484b-4bfd-83c6-b7a8f988770d',
-    expires: tomorrow
-  }
 };
 
 authorizations.alpha = {
@@ -106,6 +50,83 @@ authorizations.beta = {
     proof: {
       verificationMethod: 'did:v1:234234#234234'
     }
+  }
+};
+
+delegations.alpha = {
+  // this corresponds to the bedrock-account ID
+  controller: 'urn:uuid:defa6262-6fa2-4eb4-a8a3-924580a47900',
+  domain: 'https://example.com',
+  // this is a profile ID, this is computed (eventually) by calling
+  // did-veres-one.foo to derive the DID from the verificationMethod in the
+  // proof.
+  delegator: 'did:v1:123123', // verificationMethod.controller
+  capability: {
+    '@context': 'https://w3id.org/zcap/v1',
+    // this is a unique ID
+    id: `urn:zcap:056df9bc-93e2-4a0e-aa5a-d5217dcca018`,
+    // this is typically a did:key: or did:v1:
+    controller: actors.alpha.id,
+    // parentCapability could be root capability (e.g. a key or an LD
+    // document).
+    parentCapability:
+      'https://example.com/keys/c9dd4d64-f9b7-4ac2-968f-9416da723dca',
+    allowedAction: 'sign',
+    invocationTarget:
+      'https://example.com/keys/c9dd4d64-f9b7-4ac2-968f-9416da723dca',
+    proof: {
+      // ...,
+      // deref verificationMethod to get its controller
+      verificationMethod: 'did:v1:123123#123123'
+    }
+  }
+};
+
+policies.alpha = {
+  sequence: 0,
+  controller: actors.alpha.id,
+  refresh: {
+    constraints: {
+      maxTtlBeforeRefresh: 0
+    }
+  }
+};
+
+policies.beta = {
+  sequence: 0,
+  controller: actors.beta.id,
+  refresh: {
+    constraints: {
+      maxTtlBeforeRefresh: 1000
+    }
+  }
+};
+
+revocations.alpha = {
+  // this is for a service object ID such as the ID of a keystore/EDV/etc.
+  rootTarget: 'https://example.com/edvs/123',
+  delegator: '51689f5c-a8ea-4924-8108-e7461a54989f',
+  capability: {
+    id: '5cef0111-04f3-4d6b-9a67-48d7013fea9a',
+  }
+};
+
+revocations.beta = {
+  // this is for a service object ID such as the ID of a keystore/EDV/etc.
+  rootTarget: 'https://example.com/keystores/abc',
+  delegator: '93ae803d-e753-4789-83a1-2b3e807abd7b',
+  capability: {
+    id: '8677f033-d4fd-44c6-afb2-a49688d68c21',
+  }
+};
+
+revocations.gamma = {
+  // this is for a service object ID such as the ID of a keystore/EDV/etc.
+  rootTarget: 'https://example.com/verifiers/xyz',
+  delegator: '3f1995e6-038b-41a2-9c87-70fd0458b74e',
+  capability: {
+    id: '2044302d-484b-4bfd-83c6-b7a8f988770d',
+    expires: tomorrow
   }
 };
 
