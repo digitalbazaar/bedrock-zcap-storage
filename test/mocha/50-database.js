@@ -254,6 +254,34 @@ describe('ZCaps Database Tests', () => {
   });
 });
 
+describe('Policy Database Tests', () => {
+  describe('Indexes', async () => {
+    beforeEach(async () => {
+      const collectionName = 'zcap-storage-policy';
+      await helpers.removeCollection(collectionName);
+
+      // two policies are inserted here in order to do proper assertions
+      // for 'nReturned', 'totalKeysExamined' and 'totalDocsExamined'
+      await brZcapStorage.policies.insert({policy: mockData.policies.alpha});
+      await brZcapStorage.policies.insert({policy: mockData.policies.beta});
+    });
+    it(`is properly indexed for 'controller' in get()`, async () => {
+      const {controller} = mockData.policies.alpha;
+      const {executionStats} = await brZcapStorage.policies.get({
+        controller,
+        explain: true
+      });
+      executionStats.nReturned.should.equal(1);
+      executionStats.totalKeysExamined.should.equal(1);
+      executionStats.totalDocsExamined.should.equal(1);
+      executionStats.executionStages.inputStage.inputStage.inputStage.stage
+        .should.equal('IXSCAN');
+      executionStats.executionStages.inputStage.inputStage.inputStage
+        .keyPattern.should.eql({'policy.controller': 1});
+    });
+  });
+});
+
 describe('Revocation Database Tests', () => {
   describe('Indexes', async () => {
     beforeEach(async () => {
