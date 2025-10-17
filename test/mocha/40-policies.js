@@ -70,6 +70,41 @@ describe('zcap policies API', () => {
         err.name.should.equal('DuplicateError');
       });
   });
+  describe('count API', async () => {
+    let policy;
+    beforeEach(async () => {
+      const collectionName = 'zcap-storage-policy';
+      await helpers.removeCollection(collectionName);
+
+      policy = structuredClone(mockData.policies.alpha);
+      await brZcapStorage.policies.insert({policy});
+    });
+    it(`properly gets a policy count for 'controller'`,
+      async () => {
+        const {controller} = policy;
+        let err;
+        let result;
+        try {
+          result = await brZcapStorage.policies.count({controller});
+        } catch(e) {
+          err = e;
+        }
+        assertNoError(err);
+        should.exist(result);
+        result.count.should.equal(1);
+      });
+    it(`throws when no 'controller' is provided`, async () => {
+      let err;
+      let result;
+      try {
+        result = await brZcapStorage.policies.count({});
+      } catch(e) {
+        err = e;
+      }
+      should.not.exist(result);
+      should.exist(err);
+    });
+  });
   describe('get API', async () => {
     let policy;
     beforeEach(async () => {
