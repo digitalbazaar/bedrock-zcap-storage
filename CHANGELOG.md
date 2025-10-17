@@ -1,6 +1,6 @@
 # bedrock-zcap-storage ChangeLog
 
-## 9.4.0 - 2025-10-dd
+## 9.4.0 - 2025-10-17
 
 ### Added
 - Add `policies` feature and API. A single authorization capability policy can
