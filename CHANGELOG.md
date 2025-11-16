@@ -1,5 +1,10 @@
 # bedrock-zcap-storage ChangeLog
 
+## 9.4.2 - 2025-11-dd
+
+### Fixed
+- Ensure `refresh=false` zcap policies are permitted.
+
 ## 9.4.1 - 2025-11-15
 
 ### Fixed

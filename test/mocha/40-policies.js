@@ -36,6 +36,31 @@ describe('zcap policies API', () => {
       findResult[0].policy.controller.should.eql(policy.controller);
       findResult[0].policy.delegate.should.eql(policy.delegate);
     });
+    it('properly inserts a "refresh=false" policy', async () => {
+      let err;
+      let result;
+      const policy = structuredClone(mockData.policies.alpha);
+      policy.refresh = false;
+      try {
+        result = await brZcapStorage.policies.insert({policy});
+      } catch(e) {
+        err = e;
+      }
+      assertNoError(err);
+      should.exist(result);
+      result.policy.controller.should.equal(policy.controller);
+      result.policy.delegate.should.equal(policy.delegate);
+      result.policy.sequence.should.equal(policy.sequence);
+
+      const collection = database.collections['zcap-storage-policy'];
+      const findResult = await collection.find({
+        'policy.controller': policy.controller,
+        'policy.delegate': policy.delegate
+      }).toArray();
+      findResult.should.have.length(1);
+      findResult[0].policy.controller.should.eql(policy.controller);
+      findResult[0].policy.delegate.should.eql(policy.delegate);
+    });
     it(`throws when 'sequence' is not zero`, async () => {
       const policy = structuredClone(mockData.policies.alpha);
       policy.sequence = 1;
