@@ -1,5 +1,10 @@
 # bedrock-zcap-storage ChangeLog
 
+## 9.4.1 - 2025-11-dd
+
+### Fixed
+- Clear zcap policy cache on `insert`, `update`, and `remove` operations.
+
 ## 9.4.0 - 2025-10-17
 
 ### Added
