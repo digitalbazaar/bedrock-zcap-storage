@@ -1,5 +1,12 @@
 # bedrock-zcap-storage ChangeLog
 
+## 9.5.0 - 2026-mm-xx
+
+### Added
+- Add zcap expiration logging for observability and alerting. Configurable via
+  `bedrock.config['zcap-storage'].logging.zcapExpiration` to log warnings for
+  zcaps near expiration and errors for expired zcaps.
+
 ## 9.4.2 - 2025-11-16
 
 ### Fixed
