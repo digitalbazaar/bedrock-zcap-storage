@@ -1,6 +1,6 @@
 # bedrock-zcap-storage ChangeLog
 
-## 9.5.1 - 2026-02-dd
+## 9.6.0 - 2026-02-06
 
 ### Added
 - Add `controller` to zcap expiration logging.
