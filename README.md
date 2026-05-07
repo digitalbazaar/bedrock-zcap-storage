@@ -16,7 +16,17 @@ config['zcap-storage'].logging.zcapExpiration = {
   // Warn when zcaps expire within threshold (default: 7 days)
   // Set to `false` to disable
   logNearExpiration: {
-    threshold: 7 * 24 * 60 * 60 * 1000
+    threshold: 7 * 24 * 60 * 60 * 1000,
+
+    // Suppress warnings for short-lived/ephemeral zcaps whose original TTL
+    // (delegation lifetime, computed from `proof.created` to `expires`) is
+    // at or below this value in ms. Such zcaps are intentionally
+    // short-lived and would always trip the threshold by design.
+    // Defaults to `null`, which uses the value of `threshold`. Set to `0`
+    // (or a negative number) to disable the filter and warn on all zcaps
+    // near expiration. Zcaps without a `proof.created` timestamp are never
+    // suppressed.
+    minTtl: null
   },
 
   // Log when expired zcaps are presented (default: true)
