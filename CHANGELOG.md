@@ -1,5 +1,14 @@
 # bedrock-zcap-storage ChangeLog
 
+## 9.6.1 - 2026-04-dd
+
+### Added
+- Suppress `zcap-near-expiration` logging for short-lived/ephemeral zcaps
+  whose original TTL (computed from `proof.created` to `expires`) is at or
+  below the configured `minTtl`. Configured via
+  `bedrock.config['zcap-storage'].logging.zcapExpiration.logNearExpiration.minTtl`;
+  defaults to the value of `threshold`. Set to `0` to disable the filter.
+
 ## 9.6.0 - 2026-02-06
 
 ### Added

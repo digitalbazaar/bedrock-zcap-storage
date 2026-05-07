@@ -10,3 +10,5 @@ TAGS
 coverage
 node_modules
 reports
+.DS_Store
+
