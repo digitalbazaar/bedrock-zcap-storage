@@ -1,6 +1,6 @@
 # bedrock-zcap-storage ChangeLog
 
-## 9.7.0 - 2026-05-dd
+## 9.7.0 - 2026-05-07
 
 ### Added
 - Suppress `zcap-near-expiration` logging for short-lived/ephemeral zcaps
